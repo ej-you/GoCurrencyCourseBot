@@ -8,11 +8,10 @@ import (
 )
 
 func main() {
-	currencyCode := "EUR"
+	currencyCode := "USD"
 	date := "15/08/2014"
 
 	latestCurse, err := currency_api.GetLatestCourse(currencyCode)
-	// latestCurse, err := currency_api.GetLatestCourse("SEK")
 
 	if err == nil {
 		fmt.Printf("Course %s now: %.4f\n", currencyCode, latestCurse)

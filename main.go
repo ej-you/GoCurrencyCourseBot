@@ -1,35 +1,50 @@
 package main
 
 import (
-	"fmt"
+	"time"
 
-	"github.com/Danil-114195722/GoCurrencyCourseBot/currency_api"
+	telebot "gopkg.in/telebot.v3"
+
 	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
+	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
+
+	"github.com/Danil-114195722/GoCurrencyCourseBot/handlers"
+	"github.com/Danil-114195722/GoCurrencyCourseBot/keyboards"
 )
 
+
 func main() {
-	currencyCode := "USD"
-	date := "15/08/2014"
-
-	latestCurse, err := currency_api.GetLatestCourse(currencyCode)
-
-	if err == nil {
-		fmt.Printf("Course %s now: %.4f\n", currencyCode, latestCurse)
-	} else {
-		fmt.Println("NOT FOUND!!!")
+	// настройки бота
+	pref := telebot.Settings{
+		Token:  settings.BotToken,
+		Poller: &telebot.LongPoller{Timeout: 10 * time.Second},
+		// Verbose: true,
+		OnError: services.OnError,
 	}
 
-	err = services.CheckDate(date)
-	if err != nil {
-		fmt.Println("INVALID DATE!!!")
-	} else {
-		dateCurse, err := currency_api.GetDateCourse(currencyCode, date)
+	// инициализация бота
+	bot, err := telebot.NewBot(pref)
+	settings.DieIf(err)
 
-		if err == nil {
-			fmt.Printf("Course %s at %s: %.4f\n", currencyCode, date, dateCurse)
-		} else {
-			fmt.Println("NOT FOUND!!!")
-		}
-	}
+	// инициализация клавиатур
+	keyboards.InitKeyboards()
 
+	// инициализация хендлеров
+	bot.Handle("/start", handlers.StartHandler)
+
+	bot.Handle("/home", handlers.HomeHandler)
+	bot.Handle("/cancel", handlers.HomeHandler)
+	bot.Handle(&keyboards.BtnBackToHome, handlers.HomeHandler)
+
+	bot.Handle("/help", handlers.HelpHandler)
+	
+	bot.Handle("/course", handlers.CourseHandler)
+	bot.Handle(&keyboards.BtnCurrrencyCourse, handlers.CourseHandler)
+	
+	bot.Handle("/currencies", handlers.CurrenciesHandler)
+	bot.Handle(&keyboards.BtnCurrrencies, handlers.CurrenciesHandler)
+
+	// запуск бота
+	settings.InfoLog.Printf("Start bot %s...", bot.Me.Username)
+	bot.Start()
 }

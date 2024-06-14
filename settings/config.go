@@ -10,10 +10,12 @@ import (
 
 
 // загрузка переменных окружения
-var _ error = godotenv.Load("./.env")
+var _ error = godotenv.Load(".env")
 
 // токен бота
 var BotToken string = os.Getenv("BOT_TOKEN")
+
+var PathToAvailableCurrencies string = "./settings/available_currency_list.json"
 
 // логеры
 var InfoLog *log.Logger = log.New(os.Stdout, "[INFO]\t", log.Ldate|log.Ltime)

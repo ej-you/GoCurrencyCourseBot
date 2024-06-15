@@ -17,6 +17,13 @@ var BotToken string = os.Getenv("BOT_TOKEN")
 
 var PathToAvailableCurrencies string = "./settings/available_currency_list.json"
 
+// настройки redis
+var redisHost string = os.Getenv("REDIS_HOST")
+var redisPort string = os.Getenv("REDIS_PORT")
+
+var RedisAddr string = redisHost + ":" + redisPort
+var RedisPassword string = os.Getenv("REDIS_PASSWORD")
+
 // логеры
 var InfoLog *log.Logger = log.New(os.Stdout, "[INFO]\t", log.Ldate|log.Ltime)
 var ErrorLog *log.Logger = log.New(os.Stderr, "[ERROR]\t", log.Ldate|log.Ltime|log.Lshortfile)

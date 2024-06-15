@@ -2,10 +2,13 @@ package handlers
 
 import (
 	"fmt"
+	"strconv"
 
 	telebot "gopkg.in/telebot.v3"
 
 	"github.com/Danil-114195722/GoCurrencyCourseBot/currency_api"
+	"github.com/Danil-114195722/GoCurrencyCourseBot/keyboards"
+	"github.com/Danil-114195722/GoCurrencyCourseBot/redis"
 	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
 )
 
@@ -35,9 +38,23 @@ func getCurrencyCourseTest(currencyCode, date string) {
 	}
 }
 
-
 // команда /course
 func CourseHandler(context telebot.Context) error {
-	msgText := "course handler"
+	// строковый id юзера ТГ
+	userIdString := strconv.FormatInt(context.Chat().ID, 10)
+
+	// установка состояния юзера
+	err := redis.SetStatus(redisClient, userIdString, "start")
+	if err != nil {
+		return context.Send(errorMessage, keyboards.BackToHomeInlineKeyboard)
+	}
+
+	// получение состояния юзера
+	status, err := redis.GetStatus(redisClient, userIdString)
+	if err != nil {
+		return context.Send(errorMessage, keyboards.BackToHomeInlineKeyboard)
+	}
+
+	msgText := "course handler: " + status
 	return context.Send(msgText)
 }

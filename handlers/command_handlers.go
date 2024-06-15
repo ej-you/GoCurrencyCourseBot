@@ -44,7 +44,7 @@ func HelpHandler(context telebot.Context) error {
 		/course - активация режима для получения курса валюты
 		/currencies - список доступных валют и их кодов
 		/help - вывод этой справки
-		/cancel - отмена всех действий и переходд в главное меню
+		/cancel - отмена всех действий и переход в главное меню
 
 В режиме получения курса валюты будет несколько этапов.
 В каждом шаге подробно описаны требования к действиям пользователя. Просим ВАС ихх соблюдать.
@@ -60,8 +60,7 @@ func CurrenciesHandler(context telebot.Context) error {
 	// получение доступных валют из JSON-файла
 	curList, err := services.GetAvailableCurrencies()
 	if err != nil {
-		msgText := "☠️ Возникла ошибка при выполнении. Попробуйте выйти в главное меню и попробовать ещё раз"
-		return context.Send(msgText, keyboards.BackToHomeInlineKeyboard)
+		return context.Send(errorMessage, keyboards.BackToHomeInlineKeyboard)
 	}
 
 	msgText := "Список доступных валют и их кодов:\n\nкод: полное название\n-----\n"

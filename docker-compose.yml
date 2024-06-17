@@ -1,0 +1,49 @@
+version: '3.8'
+
+
+services:
+  redis:
+    image: redis/redis-stack-server:6.2.6-v15
+    container_name: go_currency_bot_redis
+    restart: always
+    expose:
+      - "6379"
+    # ports:
+    #   - "6379:6379"
+    networks:
+      proj_network:
+        ipv4_address: 172.21.1.4
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go_currency_bot_app
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - logs:/logs:rw
+    networks:
+      proj_network:
+        ipv4_address: 172.21.1.5
+    depends_on:
+      - redis
+
+
+networks:
+  proj_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.1.0/24
+
+
+volumes:
+  logs:
+
+# docker run -d
+#            --name redis_in_container
+#            -p 6779:6379
+#            -e REDIS_ARGS="--requirepass 123"
+#            redis/redis-stack-server:6.2.6-v15

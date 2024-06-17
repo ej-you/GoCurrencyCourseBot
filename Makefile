@@ -9,11 +9,11 @@ migrate:
 	go run ./main.go migrate
 
 compile:
-	go build -o ./go_app ./main.go
+	go build -o ./GoCurrencyCourseBot ./main.go
 
 prod:
 	@echo "Running migrations..."
-	/root/go_app migrate
+	/root/GoCurrencyCourseBot migrate
 	@echo "Running main app..."
-	/root/go_app >> $(info_log) 2>> $(error_log)
+	/root/GoCurrencyCourseBot >> $(info_log) 2>> $(error_log)
 

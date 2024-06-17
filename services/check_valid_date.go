@@ -13,7 +13,7 @@ func CheckDate(strDate string) error {
 	// верхний предел даты
 	currrentDate := time.Now()
 	// нижний предел даты
-	lowLimitDate, _ := time.Parse("02/01/2006", "01/01/1996")
+	lowLimitDate, _ := time.Parse("02/01/2006", settings.LowDate)
 
 	// dd/mm/yyyy
 	date, err := time.Parse("02/01/2006", strDate)

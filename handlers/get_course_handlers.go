@@ -10,6 +10,7 @@ import (
 	"github.com/Danil-114195722/GoCurrencyCourseBot/keyboards"
 	"github.com/Danil-114195722/GoCurrencyCourseBot/redis"
 	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
+	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
 )
 
 
@@ -130,7 +131,7 @@ func HistoricalCourseHandler(context telebot.Context) error {
 	msgText := `Введите дату в формате ДД/ММ/ГГГГ.
 Например, для 23 июля 2016 года вы должны ввести 23/07/2016
 
-❗️История курса валюты доступна с 01/01/1996 по текущий день`
+❗️История курса валюты доступна с ` + settings.LowDate + " по текущий день"
 
 	return context.Send(msgText)
 }

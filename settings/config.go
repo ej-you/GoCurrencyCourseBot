@@ -15,7 +15,10 @@ var _ error = godotenv.Load(".env")
 // токен бота
 var BotToken string = os.Getenv("BOT_TOKEN")
 
+// JSON с доступными валютами
 var PathToAvailableCurrencies string = "./settings/available_currency_list.json"
+// нижний порог доступных дат для получения исторического курса
+var LowDate string = "02/02/1996"
 
 // настройки redis
 var redisHost string = os.Getenv("REDIS_HOST")

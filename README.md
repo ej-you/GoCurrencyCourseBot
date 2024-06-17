@@ -2,6 +2,8 @@
 
 
 For Telegram API was using [Telebot](https://github.com/tucnak/telebot)
+<br>
+For getting currencies' courses was using [CBR API](https://www.cbr.ru/development/SXML/)
 
 
 ## To deploy this project use this:

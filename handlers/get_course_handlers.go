@@ -16,7 +16,7 @@ import (
 
 // команда /course
 func CourseHandler(context telebot.Context) error {
-	if statusNotIs(context, "home") {
+	if statusNotIs(context, "home") && statusNotIs(context, "chosen_action") {
 		return nil
 	}
 

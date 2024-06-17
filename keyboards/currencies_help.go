@@ -6,5 +6,4 @@ import (
 
 
 var BackToHomeInlineKeyboard = &telebot.ReplyMarkup{}
-
 var BtnBackToHome = BackToHomeInlineKeyboard.Data("главное меню", "back_to_home")

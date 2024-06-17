@@ -6,12 +6,20 @@ import (
 	telebot "gopkg.in/telebot.v3"
 
 	"github.com/Danil-114195722/GoCurrencyCourseBot/keyboards"
+	"github.com/Danil-114195722/GoCurrencyCourseBot/redis"
 	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
 )
 
 
 // команда /start
 func StartHandler(context telebot.Context) error {
+	newStatus := "home"
+	// установка состояния юзера
+	err := redis.SetStatus(redisClient, services.GetUserID(context), newStatus)
+	if err != nil {
+		return context.Send(errorMessage, keyboards.BackToHomeInlineKeyboard)
+	}
+
 	msgText := `Привет 👋
 
 Этот бот поможет вам узнать курс популярных валют 📈
@@ -24,6 +32,13 @@ func StartHandler(context telebot.Context) error {
 
 // команда /home и /cancel
 func HomeHandler(context telebot.Context) error {
+	newStatus := "home"
+	// установка состояния юзера
+	err := redis.SetStatus(redisClient, services.GetUserID(context), newStatus)
+	if err != nil {
+		return context.Send(errorMessage, keyboards.BackToHomeInlineKeyboard)
+	}
+
 	msgText := `Вы в главном меню 🗂
 
 ❗️Для получения полной инструкции введите /help`
@@ -47,7 +62,7 @@ func HelpHandler(context telebot.Context) error {
 		/cancel - отмена всех действий и переход в главное меню
 
 В режиме получения курса валюты будет несколько этапов.
-В каждом шаге подробно описаны требования к действиям пользователя. Просим ВАС ихх соблюдать.
+В каждом шаге подробно описаны требования к действиям пользователя. Просим ВАС их соблюдать.
 
 Если что-то не получается и вам выдаётся ошибка, просим перечитать требования ещё раз и повторить запрос.
 	`
@@ -57,6 +72,10 @@ func HelpHandler(context telebot.Context) error {
 
 // команда /currencies
 func CurrenciesHandler(context telebot.Context) error {
+	if statusNotIs(context, "home") {
+		return nil
+	}
+
 	// получение доступных валют из JSON-файла
 	curList, err := services.GetAvailableCurrencies()
 	if err != nil {

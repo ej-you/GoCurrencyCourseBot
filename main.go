@@ -35,14 +35,22 @@ func main() {
 	bot.Handle("/home", handlers.HomeHandler)
 	bot.Handle("/cancel", handlers.HomeHandler)
 	bot.Handle(&keyboards.BtnBackToHome, handlers.HomeHandler)
+	bot.Handle(&keyboards.BtnCourseBackToHome, handlers.HomeHandler)
 
 	bot.Handle("/help", handlers.HelpHandler)
 	
-	bot.Handle("/course", handlers.CourseHandler)
-	bot.Handle(&keyboards.BtnCurrrencyCourse, handlers.CourseHandler)
-	
 	bot.Handle("/currencies", handlers.CurrenciesHandler)
 	bot.Handle(&keyboards.BtnCurrrencies, handlers.CurrenciesHandler)
+	
+	bot.Handle("/course", handlers.CourseHandler)
+	bot.Handle(&keyboards.BtnCurrrencyCourse, handlers.CourseHandler)
+	bot.Handle(&keyboards.BtnGetCourseAgain, handlers.CourseHandler)
+	
+	bot.Handle(&keyboards.BtnActualCourse, handlers.ActualCourseHandler)
+	bot.Handle(&keyboards.BtnHistoricalCourse, handlers.HistoricalCourseHandler)
+
+	bot.Handle(telebot.OnText, handlers.CourseDialogHandler)
+	bot.Handle(telebot.OnCallback, handlers.CourseDialogHandler)
 
 	// запуск бота
 	settings.InfoLog.Printf("Start bot %s...", bot.Me.Username)

@@ -14,4 +14,22 @@ func InitKeyboards() {
 	BackToHomeInlineKeyboard.Inline(
 		BackToHomeInlineKeyboard.Row(BtnBackToHome),
 	)
+
+	// клавиатура для команды /course
+	// кнопки для выбора валюты
+	CurrenciesListInlineKeyboard.Inline(currenciesListBtnRows()...)
+
+	// клавиатура для команды /course
+	// кнопки для выбора действия
+	ActionInlineKeyboard.Inline(
+		ActionInlineKeyboard.Row(BtnActualCourse),
+		ActionInlineKeyboard.Row(BtnHistoricalCourse),
+	)
+
+	// клавиатура для команды /course
+	// кнопки для выбора действия после выдачи курса валюты
+	GottenCourseInlineKeyboard.Inline(
+		ActionInlineKeyboard.Row(BtnGetCourseAgain),
+		ActionInlineKeyboard.Row(BtnCourseBackToHome),
+	)
 }

@@ -5,6 +5,7 @@ import (
 
 	telebot "gopkg.in/telebot.v3"
 
+	"github.com/Danil-114195722/GoCurrencyCourseBot/middlewares"
 	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
 	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
 
@@ -29,22 +30,26 @@ func main() {
 	// инициализация клавиатур
 	keyboards.InitKeyboards()
 
+	// создание группы хэндлеров и добавление middleware для лога каждой введённой команды (нажатой кнопки, аналогичной команде)
+	commandsHandlers := bot.Group()
+	commandsHandlers.Use(middlewares.CommandsLogger)
+
 	// инициализация хендлеров
-	bot.Handle("/start", handlers.StartHandler)
+	commandsHandlers.Handle("/start", handlers.StartHandler)
 
-	bot.Handle("/home", handlers.HomeHandler)
-	bot.Handle("/cancel", handlers.HomeHandler)
-	bot.Handle(&keyboards.BtnBackToHome, handlers.HomeHandler)
-	bot.Handle(&keyboards.BtnCourseBackToHome, handlers.HomeHandler)
+	commandsHandlers.Handle("/home", handlers.HomeHandler)
+	commandsHandlers.Handle("/cancel", handlers.HomeHandler)
+	commandsHandlers.Handle(&keyboards.BtnBackToHome, handlers.HomeHandler)
+	commandsHandlers.Handle(&keyboards.BtnCourseBackToHome, handlers.HomeHandler)
 
-	bot.Handle("/help", handlers.HelpHandler)
+	commandsHandlers.Handle("/help", handlers.HelpHandler)
 	
-	bot.Handle("/currencies", handlers.CurrenciesHandler)
-	bot.Handle(&keyboards.BtnCurrrencies, handlers.CurrenciesHandler)
+	commandsHandlers.Handle("/currencies", handlers.CurrenciesHandler)
+	commandsHandlers.Handle(&keyboards.BtnCurrrencies, handlers.CurrenciesHandler)
 	
-	bot.Handle("/course", handlers.CourseHandler)
-	bot.Handle(&keyboards.BtnCurrrencyCourse, handlers.CourseHandler)
-	bot.Handle(&keyboards.BtnGetCourseAgain, handlers.CourseHandler)
+	commandsHandlers.Handle("/course", handlers.CourseHandler)
+	commandsHandlers.Handle(&keyboards.BtnCurrrencyCourse, handlers.CourseHandler)
+	commandsHandlers.Handle(&keyboards.BtnGetCourseAgain, handlers.CourseHandler)
 	
 	bot.Handle(&keyboards.BtnActualCourse, handlers.ActualCourseHandler)
 	bot.Handle(&keyboards.BtnHistoricalCourse, handlers.HistoricalCourseHandler)

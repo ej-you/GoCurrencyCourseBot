@@ -40,6 +40,10 @@ WORKDIR /root
 # copy compiled file and Makefile to run app
 COPY --from=build /go/src/github.com/Danil-114195722/GoCurrencyCourseBot/Makefile .
 COPY --from=build /go/src/github.com/Danil-114195722/GoCurrencyCourseBot/GoCurrencyCourseBot .
+# copy JSON-file with available currencies
+COPY --from=build /go/src/github.com/Danil-114195722/GoCurrencyCourseBot/settings/available_currency_list.json ./settings/available_currency_list.json
+
+
 
 # run app
 CMD ["make", "prod"]

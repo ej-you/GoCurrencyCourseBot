@@ -16,6 +16,10 @@ import (
 
 // команда /course
 func CourseHandler(context telebot.Context) error {
+	if statusNotIs(context, "home") {
+		return nil
+	}
+
 	newStatus := "started"
 	// установка состояния юзера
 	err := redis.SetStatus(redisClient, services.GetUserID(context), newStatus)

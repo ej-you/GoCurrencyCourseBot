@@ -1,4 +1,4 @@
-module github.com/Danil-114195722/GoCurrencyCourseBot
+module github.com/ej-you/GoCurrencyCourseBot
 
 go 1.22.2
 

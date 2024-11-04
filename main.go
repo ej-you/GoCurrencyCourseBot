@@ -5,12 +5,12 @@ import (
 
 	telebot "gopkg.in/telebot.v3"
 
-	"github.com/Danil-114195722/GoCurrencyCourseBot/middlewares"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
+	"github.com/ej-you/GoCurrencyCourseBot/middlewares"
+	"github.com/ej-you/GoCurrencyCourseBot/services"
+	"github.com/ej-you/GoCurrencyCourseBot/settings"
 
-	"github.com/Danil-114195722/GoCurrencyCourseBot/handlers"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/keyboards"
+	"github.com/ej-you/GoCurrencyCourseBot/handlers"
+	"github.com/ej-you/GoCurrencyCourseBot/keyboards"
 )
 
 

@@ -9,8 +9,8 @@ RUN apk add --no-cache make
 
 # set up workdir
 RUN cd /go/src
-RUN mkdir -p ./github.com/Danil-114195722/GoCurrencyCourseBot
-WORKDIR /go/src/github.com/Danil-114195722/GoCurrencyCourseBot
+RUN mkdir -p ./github.com/ej-you/GoCurrencyCourseBot
+WORKDIR /go/src/github.com/ej-you/GoCurrencyCourseBot
 
 # install dependences
 COPY ./go.mod .
@@ -38,10 +38,10 @@ RUN mkdir /logs
 
 WORKDIR /root
 # copy compiled file and Makefile to run app
-COPY --from=build /go/src/github.com/Danil-114195722/GoCurrencyCourseBot/Makefile .
-COPY --from=build /go/src/github.com/Danil-114195722/GoCurrencyCourseBot/GoCurrencyCourseBot .
+COPY --from=build /go/src/github.com/ej-you/GoCurrencyCourseBot/Makefile .
+COPY --from=build /go/src/github.com/ej-you/GoCurrencyCourseBot/GoCurrencyCourseBot .
 # copy JSON-file with available currencies
-COPY --from=build /go/src/github.com/Danil-114195722/GoCurrencyCourseBot/settings/available_currency_list.json ./settings/available_currency_list.json
+COPY --from=build /go/src/github.com/ej-you/GoCurrencyCourseBot/settings/available_currency_list.json ./settings/available_currency_list.json
 
 
 

@@ -9,7 +9,7 @@ import (
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/transform"
 
-	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
+	"github.com/ej-you/GoCurrencyCourseBot/settings"
 )
 
 

@@ -3,7 +3,7 @@ package keyboards
 import (
 	telebot "gopkg.in/telebot.v3"
 	
-	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
+	"github.com/ej-you/GoCurrencyCourseBot/services"
 )
 
 // Клавиатура с доступными валютами

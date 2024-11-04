@@ -6,11 +6,11 @@ import (
 
 	telebot "gopkg.in/telebot.v3"
 
-	"github.com/Danil-114195722/GoCurrencyCourseBot/currency_api"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/keyboards"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/redis"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
+	"github.com/ej-you/GoCurrencyCourseBot/currency_api"
+	"github.com/ej-you/GoCurrencyCourseBot/keyboards"
+	"github.com/ej-you/GoCurrencyCourseBot/redis"
+	"github.com/ej-you/GoCurrencyCourseBot/services"
+	"github.com/ej-you/GoCurrencyCourseBot/settings"
 )
 
 

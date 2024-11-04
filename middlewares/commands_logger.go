@@ -3,8 +3,8 @@ package middlewares
 import (
 	telebot "gopkg.in/telebot.v3"
 	
-	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
+	"github.com/ej-you/GoCurrencyCourseBot/settings"
+	"github.com/ej-you/GoCurrencyCourseBot/services"
 )
 
 

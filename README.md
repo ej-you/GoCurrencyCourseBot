@@ -9,7 +9,7 @@ For getting currencies' courses was using [CBR API](https://www.cbr.ru/developme
 ## To deploy this project use this:
 
 ```shell
-git clone https://github.com/Danil-114195722/GoCurrencyCourseBot.git
+git clone https://github.com/ej-you/GoCurrencyCourseBot.git
 
 cd ./GoCurrencyCourseBot
 docker-compose up --build -d

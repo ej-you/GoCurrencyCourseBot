@@ -6,7 +6,7 @@ import (
 
 	go_redis "github.com/redis/go-redis/v9"
 
-	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
+	"github.com/ej-you/GoCurrencyCourseBot/settings"
 )
 
 

@@ -6,9 +6,9 @@ import (
 	go_redis "github.com/redis/go-redis/v9"
 	telebot "gopkg.in/telebot.v3"
 
-	"github.com/Danil-114195722/GoCurrencyCourseBot/redis"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/services"
-	"github.com/Danil-114195722/GoCurrencyCourseBot/settings"
+	"github.com/ej-you/GoCurrencyCourseBot/redis"
+	"github.com/ej-you/GoCurrencyCourseBot/services"
+	"github.com/ej-you/GoCurrencyCourseBot/settings"
 )
 
 
